@@ -15,7 +15,7 @@ cubes_positions = [
 ]
 
 def create_cubes(positions):
-    """creates mesh cubes given their positions(x, y , z) as a list"""
+    """creates mesh cubes given their positions(x, y, z) as a list"""
     for position in positions:
         pos_x = position[0]
         pos_y = position[1]
