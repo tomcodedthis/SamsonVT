@@ -7,21 +7,24 @@ import numpy as np
 def build_mesh_cubes(amount):
     """builds (x)amount of mesh cubes"""
     for i in range(amount):
-        bpy.ops.mesh.primitive_cube_add(size=1, enter_editmode=False,
-        align='WORLD', location=(i, 0, get_sine_values()[i]), scale=(1, 1, 1))
+        bpy.ops.mesh.primitive_cube_add(size=1,
+                                        enter_editmode=False,
+                                        align='WORLD',
+                                        location=(i, 0, get_sine_values()[i]),
+                                        scale=(1, 1, 1))
 
 def name_scene_objects():
     """names all current scene objects"""
     for obj in bpy.data.objects:
-        obj.name = rdm_letters(3)+'/'+rdm_numbers(3)
+        obj.name = rdm_letters(3)+'/'+str(rdm_numbers(3))
 
 def rdm_letters(amount):
-    """returns (x)amount of random letters"""
+    """returns str (x)amount of random letters"""
     return str(''.join(random.choices(string.ascii_letters, k = amount)))
 
 def rdm_numbers(amount):
-    """returns (x)amount of random numbers"""
-    return str(''.join(random.choices(string.digits, k = amount)))
+    """returns int (x)amount of random numbers"""
+    return int(''.join(random.choices(string.digits, k = amount)))
 
 def get_sine_values():
     """returns list of z-axis values (-10 to 10) of a sine wave"""
