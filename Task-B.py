@@ -1,6 +1,5 @@
-"""Task A of SamsonVT by Tom Howcroft (tomcodedthis)"""
-import random
-import string
+"""Task B of SamsonVT by Tom Howcroft (tomcodedthis)"""
+from random import randint
 import bpy
 
 cubes_positions = [
@@ -26,21 +25,17 @@ def create_cubes(positions):
                                         enter_editmode=False,
                                         align='WORLD',
                                         location=(pos_x, pos_y, pos_z),
-                                        rotation=(rdm_numbers(1), rdm_numbers(1), rdm_numbers(1)),
+                                        rotation=(randint(0, 9), randint(0, 9), randint(0, 9)),
                                         scale=(1, 1, 1))
 
 def color_cubes():
     """gives random color to all objects in scene"""
     for obj in bpy.data.objects:
-        mat = bpy.data.materials.new(name=f"Material.{rdm_numbers(2)}")
-        col = [rdm_numbers(1), rdm_numbers(1), rdm_numbers(1), rdm_numbers(1)]
+        mat = bpy.data.materials.new(name="Material")
+        col = [randint(0, 9), randint(0, 9), randint(0, 9), randint(0, 9)]
 
         mat.diffuse_color = col
         obj.active_material = mat
-
-def rdm_numbers(amount):
-    """returns int (x)amount of random numbers"""
-    return int(''.join(random.choices(string.digits, k = amount)))
 
 create_cubes(cubes_positions)
 color_cubes()
