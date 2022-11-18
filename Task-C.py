@@ -7,8 +7,8 @@ def create_mandelbrot_fractal():
     verticies = get_vertex_positions()
     faces = get_faces_indicies()
 
-    mesh = bpy.data.meshes.new("mandelbrot")
-    obj = bpy.data.objects.new("mandelbrot", mesh)
+    mesh = bpy.data.meshes.new("Mandelbrot")
+    obj = bpy.data.objects.new("Mandelbrot", mesh)
     bpy.context.collection.objects.link(obj)
 
     mesh.from_pydata(verticies,[],faces)
@@ -66,5 +66,29 @@ def get_faces_indicies():
 
     return indicies_list
 
-RESOLUTION = 2000
+def color_object():
+    """gives random color to all objects in scene"""
+    obj = bpy.data.objects['Mandelbrot']
+
+    mat = bpy.data.materials.new(name="Material")
+    col = [1, 0, 0, 1]
+
+    mat.diffuse_color = col
+    obj.active_material = mat
+
+def center_view():
+    """centers the fractal object in 3D view"""
+    area = next((area for area in bpy.context.screen.areas if area.type == 'VIEW_3D'), None)
+    space = area.spaces.active
+
+    v3d = space.region_3d
+    v3d.view_location = (-0.5, 0, 0)
+    v3d.view_distance = (4.0)
+    v3d.view_rotation = (180.0, 0.0, 0.0, 0.0)
+
+
+RESOLUTION = 1000
+
 create_mandelbrot_fractal()
+color_object()
+center_view()
