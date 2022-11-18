@@ -34,9 +34,13 @@ def get_vertex_positions():
                 if z_x * z_x + z_y * z_y > 4:
                     break
 
-            pos_z = math.log1p(k) / 4
+            pos_z = math.log1p(k) / 10
 
-            positions = (pos_x, pos_y, pos_z)
+            if pos_z < 0.19:
+                positions = (0, 0, 0)
+            else:
+                positions = (pos_x, pos_y, pos_z)
+
             position_list.append(positions)
 
     return position_list
@@ -62,5 +66,5 @@ def get_faces_indicies():
 
     return indicies_list
 
-RESOLUTION = 1000
+RESOLUTION = 2000
 create_mandelbrot_fractal()
