@@ -32,7 +32,7 @@ def color_cubes():
     """gives random color to all objects in scene"""
     for obj in bpy.data.objects:
         mat = bpy.data.materials.new(name="Material")
-        col = [randint(0, 9), randint(0, 9), randint(0, 9), randint(0, 9)]
+        col = [randint(0, 9), randint(0, 9), randint(0, 9), 1]
 
         mat.diffuse_color = col
         obj.active_material = mat
